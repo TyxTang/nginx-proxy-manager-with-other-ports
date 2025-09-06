@@ -11,7 +11,16 @@ you can change the default ports in these ways:
 - change the ports when you build the image(see the example below)
 - change the `.env` and use docker compose to start the demo quickly `docker-compose up -d`
 
-# just build the image
+# usage of this image
+
+## just use the image
+
+if you use the same ports with me, you can import the image from docker hub:
+```
+docker pull popozhu/nginx-proxy-manager-with-other-ports:2
+```
+
+## build the image with different ports by yourself
 
 change the ports when you build the image:
 
@@ -23,12 +32,14 @@ docker build \
     -t nginx-proxy-manager-with-other-ports:2 \
     .
 ```
+you can also checkout the `Dockerfile` here for more different info
 
 
-# or start the container in your local
+## or start the container in your local
 
 checkout the `.env` to modify the ports and data dir, and then:
 ```
+git clone
 docker-compose up -d
 ```
 
@@ -38,6 +49,6 @@ Email:    admin@example.com
 Password: changeme
 ```
 
-# usage
+# usage of nginx proxy manager 
 
 the same with https://github.com/NginxProxyManager/nginx-proxy-manager, except the ports.

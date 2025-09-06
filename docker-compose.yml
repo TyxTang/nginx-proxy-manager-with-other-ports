@@ -1,0 +1,23 @@
+services:
+  nginx-proxy-manager:
+    build:
+      context: .
+      args:
+        # Admin Web Port 
+        DEFAULT_PORT_PRODUCTTION: ${DEFAULT_PORT_PRODUCTTION:-8181}
+        # Public HTTP Port
+        DEFAULT_PORT_HTTP: ${DEFAULT_PORT_HTTP:-8080}
+        # Public HTTPS Port
+        DEFAULT_PORT_HTTPS: ${DEFAULT_PORT_HTTPS:-4443}
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+      IP_RANGES_FETCH_ENABLED: 'false' 
+    # network_mode: "host"
+    ports:
+      - '${DEFAULT_PORT_PRODUCTTION:-8181}:${DEFAULT_PORT_PRODUCTTION:-8181}'
+      - '${DEFAULT_PORT_HTTP:-8080}:${DEFAULT_PORT_HTTP:-8080}'
+      - '${DEFAULT_PORT_HTTPs:-4443}:${DEFAULT_PORT_HTTPs:-4443}'
+    volumes:
+      - "${DEFAULT_DATA_DIR:-.}/data:/data:rw"
+      - "${DEFAULT_DATA_DIR:-.}/letsencrypt:/etc/letsencrypt:rw"

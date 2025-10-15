@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - change
+      - main
 
 jobs:
   Docker-build:
@@ -32,5 +32,8 @@ jobs:
           push: true
           build-args: |
             COMMIT_TAG=${{ github.sha }}
+            DEFAULT_PORT_PRODUCTTION=81
+            DEFAULT_PORT_HTTP=555
+            DEFAULT_PORT_HTTPS=666
           tags: |
             ${{ secrets.HARBOR_REGISTRY }}/${{ secrets.HARBOR_USERNAME }}/nginx-proxy-manager-with-other-ports:latest
